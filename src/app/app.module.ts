@@ -10,6 +10,9 @@ import { HomePage } from '../pages/home/home';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
 
+// Mapas
+import { AgmCoreModule } from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs'
+    }),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
