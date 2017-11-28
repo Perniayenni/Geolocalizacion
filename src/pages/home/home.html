@@ -9,6 +9,6 @@
 <ion-content padding>
   <button ion-button block class="btnColor">Obtener Estacionamientos</button>
   <agm-map [latitude]="lat" [longitude]="lg" [zoom]="zoom">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-marker [latitude]="ubicacion.ubicacion.lat" [longitude]="ubicacion.ubicacion.lng"></agm-marker>
   </agm-map>
 </ion-content>
