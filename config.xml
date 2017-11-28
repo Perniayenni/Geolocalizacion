@@ -84,4 +84,5 @@
     <plugin name="cordova-plugin-mauron85-background-geolocation" spec="~2.3.2" />
     <engine name="browser" spec="~4.1.0" />
     <plugin name="cordova-plugin-geolocation" spec="^3.0.0" />
+    <engine name="android" spec="~6.2.3" />
 </widget>
