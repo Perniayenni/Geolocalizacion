@@ -13,14 +13,16 @@ export class UbicacionProvider {
   constructor(private geolocation: Geolocation) {
     console.log('Hello UbicacionProvider Provider');
   }
-  ubicacion:any ={}
+  ubicacion:any ={
+      lt: -33.4554302,
+      lg: -70.6502849
+  }
 
   iniciar_ubicacion(){
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
-      console.log(data);
-      this.ubicacion.lat = data.coords.latitude;
-      this.ubicacion.lbg = data.coords.longitude;
+      this.ubicacion.lt = data.coords.latitude;
+      this.ubicacion.lg = data.coords.longitude;
       // data can be a set of coordinates, or an error (if an error occurred).
       // data.coords.latitude
       // data.coords.longitude
