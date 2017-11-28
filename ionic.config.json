@@ -2,5 +2,7 @@
   "name": "mobEstacionamientos",
   "app_id": "06af1970",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
