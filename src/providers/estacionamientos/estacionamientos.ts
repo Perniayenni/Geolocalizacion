@@ -19,8 +19,12 @@ export class EstacionamientosProvider {
   }
 
   datosRes:any = [];
+  datosResHorario:any = [];
   urlEstacionamiento:string= 'http://localhost:8000/estacionamiento';
   urlHorarios:string= 'http://localhost:8000/horarios';
+
+  //urlEstacionamiento:string= 'http://apiestacionamientos.ourproject.cl/public/estacionamiento';
+  //urlHorarios:string= 'http://apiestacionamientos.ourproject.cl/public/horarios';
 
   obtenerEstacionamientos(){
     this.estacionamientos = [];
@@ -30,7 +34,8 @@ export class EstacionamientosProvider {
         for (let res of this.datosRes){
           this.obtenerHorarios(res.id_es)
             .subscribe(datos=>{
-              for (let res1 of this.datosRes){
+              this.datosResHorario = datos;
+              for (let res1 of this.datosResHorario){
                 this.horariosSe.push(res1);
               }
               let DatosEs = {
@@ -48,8 +53,6 @@ export class EstacionamientosProvider {
               this.horariosSe = [];
             });
         }
-        console.log('desde servicios');
-        console.log(this.estacionamientos);
       }
       );
   }
