@@ -87,3 +87,35 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+table.default tbody tr {
+  border-bottom: solid 1px #f4f4f4;
+}
+
+table.default td {
+  padding: 0.5em 1em 0.5em 1em;
+}
+
+table.default th {
+  text-align: left;
+  font-weight: 400;
+  padding: 0.5em 1em 0.5em 1em;
+}
+
+.conteInfo{
+  background: #d0d0d0;
+  width: auto;
+  height: auto;
+  padding: 5px;
+}
+.over{
+  overflow: hidden;
+}
+
+.labelTi{
+  font-size: 15px;
+  background: #f1d700;
+  padding: 3px;
+  margin-top: 5px;
+}

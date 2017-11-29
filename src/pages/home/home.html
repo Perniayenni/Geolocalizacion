@@ -7,12 +7,16 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block class="btnColor">Obtener Estacionamientos</button>
+  <button ion-button block class="btnColor">Obtener Estacionamientos cerca de ti</button>
   <agm-map [latitude]="lat" [longitude]="lg" [zoom]="zoom">
     <agm-marker  *ngFor="let marcador of servEs.estacionamientos let i = index"
                  [latitude]="marcador.lt"
                  [longitude]="marcador.lng"
                  iconUrl="assets/imgs/estacionamiento1.png"
-    ></agm-marker>
+    >
+      <agm-info-window class="over">
+
+      </agm-info-window>
+    </agm-marker>
   </agm-map>
 </ion-content>

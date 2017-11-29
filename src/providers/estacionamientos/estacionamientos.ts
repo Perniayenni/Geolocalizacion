@@ -18,6 +18,7 @@ export class EstacionamientosProvider {
     console.log('Hello EstacionamientosProvider Provider');
   }
 
+  datosRes:any = [];
   urlEstacionamiento:string= 'http://localhost:8000/estacionamiento';
   urlHorarios:string= 'http://localhost:8000/horarios';
 
@@ -25,10 +26,11 @@ export class EstacionamientosProvider {
     this.estacionamientos = [];
     return this.http.get(this.urlEstacionamiento)
       .subscribe( data => {
-        for (let res of data){
+        this.datosRes = data;
+        for (let res of this.datosRes){
           this.obtenerHorarios(res.id_es)
             .subscribe(datos=>{
-              for (let res1 of datos){
+              for (let res1 of this.datosRes){
                 this.horariosSe.push(res1);
               }
               let DatosEs = {

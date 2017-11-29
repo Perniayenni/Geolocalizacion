@@ -13,6 +13,8 @@ export class HomePage {
   lg:any = -70.6661439;
   zoom:number= 12;
 
+  id_hor:number;
+
   constructor(public navCtrl: NavController,
               public ubicacion:UbicacionProvider,
               public servEs:EstacionamientosProvider) {
