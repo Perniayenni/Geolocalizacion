@@ -21,8 +21,7 @@ export class UbicacionProvider {
   iniciar_ubicacion(){
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
-      this.ubicacion.lt = data.coords.latitude;
-      this.ubicacion.lg = data.coords.longitude;
+   console.log(data);
       // data can be a set of coordinates, or an error (if an error occurred).
       // data.coords.latitude
       // data.coords.longitude
