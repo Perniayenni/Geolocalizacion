@@ -11,7 +11,7 @@ export class HomePage {
 
   lat:any = -33.44368;
   lg:any = -70.6661439;
-  zoom:number= 12;
+  zoom:number= 16;
 
   id_hor:number;
 
