@@ -21,4 +21,8 @@ export class HomePage {
     this.ubicacion.iniciar_ubicacion();
   }
 
+  obtenerEsCerca(){
+    this.servEs.agregarDistancia();
+  }
+
 }

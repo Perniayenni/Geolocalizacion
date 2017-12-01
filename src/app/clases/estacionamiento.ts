@@ -10,6 +10,8 @@ export class Estacionamiento {
   tipoEs?: string;
   alturaMaxima?: number;
   disponibles?: number;
+  duracion?:string;
+  valorDurac?:number;
   horarios: Horarios[];
 
   constructor(id_es:number, nombreEs: string, direccion: string, lt: any, lng: any, capacidad: number, tipoEs: string,

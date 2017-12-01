@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Estacionamiento, Horarios } from '../../app/clases/index';
+import { UbicacionProvider } from '../ubicacion/ubicacion';
 
 /*
   Generated class for the EstacionamientosProvider provider.
@@ -38,12 +39,17 @@ export class EstacionamientosProvider {
     }
   ];*/
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public ubicacion:UbicacionProvider) {
     console.log('Hello EstacionamientosProvider Provider');
   }
 
+  // variables de distancia
+  urlMatrizDis:string='https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
+  keyMAtriz:string='&key=AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs';
+
   datosRes:any = [];
   datosResHorario:any = [];
+
   urlEstacionamiento:string= 'http://localhost:8000/estacionamiento';
   urlHorarios:string= 'http://localhost:8000/horarios';
 
@@ -84,8 +90,23 @@ export class EstacionamientosProvider {
       );
   }
 
- obtenerHorarios(id){
+  obtenerHorarios(id){
     let url = this.urlHorarios+'/'+id;
     return this.http.get(url);
+  }
+
+  agregarDistancia(){
+    for(let estcmto of this.estacionamientos){
+      this.obtenetDistancia(estcmto.lt, estcmto.lng)
+        .subscribe(data =>{
+          console.log(data);
+        });
+    }
+  }
+
+  obtenetDistancia(lt, lng){
+    let urlCreada = this.urlMatrizDis+this.ubicacion.lt+','+this.ubicacion.lng+'&destinations='+lt+','+lng+this.keyMAtriz;
+    console.log(urlCreada);
+    return this.http.get(urlCreada);
   }
 }

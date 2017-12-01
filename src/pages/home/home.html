@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block class="btnColor">Obtener Estacionamientos cerca de ti</button>
+  <button ion-button block class="btnColor" (click)="obtenerEsCerca()">Obtener Estacionamientos cerca de ti</button>
   <div *ngFor="let marcador of servEs.estacionamientos let i = index">
     {{marcador.lt}}{{marcador.lng}}
   </div>
