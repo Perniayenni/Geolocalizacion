@@ -8,6 +8,9 @@
 
 <ion-content padding>
   <button ion-button block class="btnColor">Obtener Estacionamientos cerca de ti</button>
+  <div *ngFor="let marcador of servEs.estacionamientos let i = index">
+    {{marcador.lt}}{{marcador.lng}}
+  </div>
   <agm-map [latitude]="ubicacion.lt" [longitude]="ubicacion.lng" [zoom]="zoom">
     <agm-marker  *ngFor="let marcador of servEs.estacionamientos let i = index"
                  [latitude]="marcador.lt"

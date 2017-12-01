@@ -19,7 +19,6 @@ export class HomePage {
               public ubicacion:UbicacionProvider,
               public servEs:EstacionamientosProvider) {
     this.ubicacion.iniciar_ubicacion();
-    this.servEs.obtenerEstacionamientos();
   }
 
 }
