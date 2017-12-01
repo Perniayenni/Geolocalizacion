@@ -10,9 +10,33 @@ import { Estacionamiento, Horarios } from '../../app/clases/index';
 */
 @Injectable()
 export class EstacionamientosProvider {
-
   public estacionamientos:Estacionamiento[] = [];
   public horariosSe:Horarios[] = [];
+ /* public estacionamientos:Estacionamiento[] = [
+    {
+      id_es: 1,
+      nombreEs: "Da conchimba",
+      direccion: "serrano 76",
+      lt: -33.4454635,
+      lng: -70.6512245,
+      capacidad: 100,
+      tipoEs: "subterraneo",
+      alturaMaxima: 3,
+      disponibles: 100,
+      horarios: this.horariosSe
+
+    }];
+  public horariosSe:Horarios[] = [
+    {
+      id_hor: 1,
+      dias: "sab-dom",
+      hora: "24 horas",
+      maximoDiario: 200,
+      montoPorHora: 200,
+      montoPorMinuto: null,
+      id_es: 1
+    }
+  ];*/
 
   constructor(public http: HttpClient) {
     console.log('Hello EstacionamientosProvider Provider');
@@ -38,18 +62,21 @@ export class EstacionamientosProvider {
               for (let res1 of this.datosResHorario){
                 this.horariosSe.push(res1);
               }
-              let DatosEs = {
-                id_es: res.id_es,
-                nombreEs: res.nombreEs,
-                direccion: res.direccion,
-                lt: res.lt,
-                lng: res.lng,
-                capacidad: res.capacidad,
-                tipoEs: res.tipoEs,
-                alturaMaxima: res.alturaMaxima,
-                horarios: this.horariosSe
-              }
-              this.estacionamientos.push(DatosEs);
+
+              res.horarios = this.horariosSe;
+              /*
+              let DatosEs:Estacionamiento = {
+                'id_es': res.id_es,
+                'nombreEs': res.nombreEs,
+                'direccion': res.direccion,
+                'lt': res.lt,
+                'lng': res.lng,
+                'capacidad': res.capacidad,
+                'tipoEs': res.tipoEs,
+                'alturaMaxima': res.alturaMaxima,
+                'horarios': this.horariosSe
+              }*/
+              this.estacionamientos.push(res);
               this.horariosSe = [];
             });
         }
