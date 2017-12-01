@@ -1,8 +1,9 @@
 export class Horarios {
-  id_hor?:string;
+  id_hor?:number;
   dias:string;
   hora:string;
   montoPorHora:number;
   montoPorMinuto:number;
   maximoDiario:number;
+  id_es?:number;
 }
