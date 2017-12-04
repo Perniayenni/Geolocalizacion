@@ -26,11 +26,13 @@ export class HomePage {
 
   obtenerEsCerca(){
  // this.servEs.agregarDistancia();
+    let resDatos;
     let datosResp;
     for(let estcmto of this.servEs.estacionamientos){
       this.servEs.obtenetDistancia(estcmto.lt, estcmto.lng)
         .subscribe(data =>{
-          datosResp = data.rows;
+          resDatos= data;
+          datosResp = resDatos.rows;
           console.log(datosResp);
           for (let res1 of datosResp){
             for(let res2 of res1.elements){

@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar color="gris">
-  <h4 class="colorAmaLEtra">Estacionamientos cercanos</h4>
+    <ion-buttons left>
+      <button ion-button (click)="viewCtrl.dismiss();">X</button>
+    </ion-buttons>
+  <h4 text-center class="colorAmaLEtra">Estacionamientos cercanos</h4>
   </ion-navbar>
 
 </ion-header>
@@ -20,7 +23,8 @@
     <div class="titulosAmarillo"><label>Tiempo:</label> {{estamt.duracion}}</div>
     <ion-row>
       <ion-col col-6><button small ion-button color="gris" outline>Promoción</button></ion-col>
-      <ion-col col-6 ><button small ion-button color="gris" float-right outline><a href="geo:{{estamt.lt}},{{estamt.lng}}">Ir</a></button></ion-col>
+      <ion-col col-6 ><button small ion-button color="gris" float-right outline>
+        <a href="http://maps.google.com?q={{estamt.lt}},{{estamt.lng}}">Ir</a></button></ion-col>
     </ion-row>
 
       <table class="default responsive">
