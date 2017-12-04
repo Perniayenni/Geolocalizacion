@@ -13,8 +13,8 @@
   </div>
   <agm-map [latitude]="ubicacion.lt" [longitude]="ubicacion.lng" [zoom]="zoom">
     <agm-marker  *ngFor="let marcador of servEs.estacionamientos let i = index"
-                 [latitude]="marcador.lt"
-                 [longitude]="marcador.lng"
+                 [latitude]="ConvertString(marcador.lt)"
+                 [longitude]="ConvertString(marcador.lng)"
                  iconUrl="assets/imgs/estacionamiento1.png">
       <agm-info-window class="over">
         <div class="labelTi">{{marcador.nombreEs}}</div>

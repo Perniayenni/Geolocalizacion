@@ -25,4 +25,8 @@ export class HomePage {
     this.servEs.agregarDistancia();
   }
 
+  ConvertString(value){
+    return parseFloat(value)
+  }
+
 }
