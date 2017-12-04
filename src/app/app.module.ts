@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ModalCercanosPage} from '../pages/modal-cercanos/modal-cercanos';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
@@ -19,7 +20,8 @@ import { EstacionamientosProvider } from '../providers/estacionamientos/estacion
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ModalCercanosPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { EstacionamientosProvider } from '../providers/estacionamientos/estacion
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ModalCercanosPage
   ],
   providers: [
     StatusBar,

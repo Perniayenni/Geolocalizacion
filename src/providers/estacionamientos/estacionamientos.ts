@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Estacionamiento, Horarios } from '../../app/clases/index';
 import { UbicacionProvider } from '../ubicacion/ubicacion';
@@ -13,31 +13,6 @@ import { UbicacionProvider } from '../ubicacion/ubicacion';
 export class EstacionamientosProvider {
   public estacionamientos:Estacionamiento[] = [];
   public horariosSe:Horarios[] = [];
- /* public estacionamientos:Estacionamiento[] = [
-    {
-      id_es: 1,
-      nombreEs: "Da conchimba",
-      direccion: "serrano 76",
-      lt: -33.4454635,
-      lng: -70.6512245,
-      capacidad: 100,
-      tipoEs: "subterraneo",
-      alturaMaxima: 3,
-      disponibles: 100,
-      horarios: this.horariosSe
-
-    }];
-  public horariosSe:Horarios[] = [
-    {
-      id_hor: 1,
-      dias: "sab-dom",
-      hora: "24 horas",
-      maximoDiario: 200,
-      montoPorHora: 200,
-      montoPorMinuto: null,
-      id_es: 1
-    }
-  ];*/
 
   constructor(public http: HttpClient, public ubicacion:UbicacionProvider) {
     console.log('Hello EstacionamientosProvider Provider');
@@ -50,11 +25,11 @@ export class EstacionamientosProvider {
   datosRes:any = [];
   datosResHorario:any = [];
 
-  urlEstacionamiento:string= 'http://localhost:8000/estacionamiento';
-  urlHorarios:string= 'http://localhost:8000/horarios';
-
-  //urlEstacionamiento:string= 'http://apiestacionamientos.ourproject.cl/public/estacionamiento';
-  //urlHorarios:string= 'http://apiestacionamientos.ourproject.cl/public/horarios';
+  //urlEstacionamiento:string= 'http://localhost:8000/estacionamiento';
+  //urlHorarios:string= 'http://localhost:8000/horarios';
+  urlMatriz:string = 'http://apiestacionamientos.ourproject.cl/public/matriz';
+  urlEstacionamiento:string= 'http://apiestacionamientos.ourproject.cl/public/estacionamiento';
+  urlHorarios:string= 'http://apiestacionamientos.ourproject.cl/public/horarios';
 
   obtenerEstacionamientos(){
     this.estacionamientos = [];
@@ -70,22 +45,11 @@ export class EstacionamientosProvider {
               }
 
               res.horarios = this.horariosSe;
-              /*
-              let DatosEs:Estacionamiento = {
-                'id_es': res.id_es,
-                'nombreEs': res.nombreEs,
-                'direccion': res.direccion,
-                'lt': res.lt,
-                'lng': res.lng,
-                'capacidad': res.capacidad,
-                'tipoEs': res.tipoEs,
-                'alturaMaxima': res.alturaMaxima,
-                'horarios': this.horariosSe
-              }*/
               this.estacionamientos.push(res);
               this.horariosSe = [];
             });
         }
+        console.log(this.estacionamientos);
       }
       );
   }
@@ -95,18 +59,29 @@ export class EstacionamientosProvider {
     return this.http.get(url);
   }
 
-  agregarDistancia(){
+/*  agregarDistancia(){
+    let datosResp;
     for(let estcmto of this.estacionamientos){
       this.obtenetDistancia(estcmto.lt, estcmto.lng)
         .subscribe(data =>{
-          console.log(data);
+          datosResp = data.rows;
+          for (let res1 of datosResp){
+            for(let res2 of res1.elements){
+              estcmto.duracion = res2.duration.text;
+              estcmto.valorDurac = res2.duration.value;
+            }
+          }
         });
     }
   }
-
+*/
   obtenetDistancia(lt, lng){
-    let urlCreada = this.urlMatrizDis+this.ubicacion.lt+','+this.ubicacion.lng+'&destinations='+lt+','+lng+this.keyMAtriz;
-    console.log(urlCreada);
-    return this.http.get(urlCreada);
+    let headers = new HttpHeaders({
+      'Content-Type':'application/json'
+    });
+    let datos= {
+      urlCreada : this.urlMatrizDis+this.ubicacion.lt+','+this.ubicacion.lng+'&destinations='+lt+','+lng+this.keyMAtriz
+    };
+    return this.http.post(this.urlMatriz, datos, {headers});
   }
 }

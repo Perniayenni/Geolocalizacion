@@ -39,7 +39,8 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-  amarillo:  #f1d700
+  amarillo:  #f1d700,
+  gris: #5c5c5c,
 );
 
 
@@ -91,16 +92,33 @@ $colors: (
 
 table.default tbody tr {
   border-bottom: solid 1px #f4f4f4;
+  font-size: 11px;
+  border: 1px solid #5c5c5c;
+}
+
+table.default{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  width: auto;
+
 }
 
 table.default td {
-  padding: 0.5em 1em 0.5em 1em;
+ padding-left: 0.5em;
+  padding-right: 0.5em;
+  border: 1px solid #5c5c5c;
+
 }
 
 table.default th {
   text-align: left;
   font-weight: 400;
-  padding: 0.5em 1em 0.5em 1em;
+  font-size: 11px;
+ padding: 0.4em;
+  border: 1px solid #5c5c5c;
+  background:#5c5c5c ;
+  color: #f1d700;
 }
 
 .conteInfo{
@@ -118,4 +136,20 @@ table.default th {
   background: #f1d700;
   padding: 3px;
   margin-top: 5px;
+}
+
+.colorAmaLEtra{
+  color: #f1d700;
+}
+
+.titulosAmarillo{
+    font-size: 15px;
+    background: #f1d700;
+    padding: 3px;
+    margin-top: 1px;
+    width: 100%;
+}
+
+.buttonPequeno{
+  height: 30px;
 }
