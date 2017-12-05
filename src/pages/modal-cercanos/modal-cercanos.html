@@ -22,7 +22,7 @@
   <div class="titulosAmarillo">{{estamt.nombreEs}}</div>
     <div class="titulosAmarillo"><label>Tiempo:</label> {{estamt.duracion}}</div>
     <ion-row>
-      <ion-col col-6><button small ion-button color="gris" outline>Promoción</button></ion-col>
+      <ion-col col-6><button small ion-button color="gris" outline (click)="verPromocion(estamt.promocion)">Promoción</button></ion-col>
       <ion-col col-6 ><button small ion-button color="gris" float-right outline>
         <a href="http://maps.google.com?q={{estamt.lt}},{{estamt.lng}}">Ir</a></button></ion-col>
     </ion-row>

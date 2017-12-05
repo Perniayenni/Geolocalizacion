@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { EstacionamientosProvider } from '../../providers/estacionamientos/estacionamientos';
 
 /**
@@ -17,11 +17,23 @@ export class ModalCercanosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public servEs:EstacionamientosProvider,
-              public viewCtrl:ViewController ) {
+              public viewCtrl:ViewController,
+              public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalCercanosPage');
+  }
+
+  verPromocion(dato){
+    if (dato == ''){
+      dato = 'No tiene';
+    }
+      let alert = this.alertCtrl.create({
+        subTitle: dato,
+        buttons: ['OK']
+      });
+      alert.present();
   }
 
 }
