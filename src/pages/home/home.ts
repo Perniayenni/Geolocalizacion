@@ -1,9 +1,18 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController } from 'ionic-angular';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { NavController, Platform, LoadingController, ModalController } from 'ionic-angular';
 import {UbicacionProvider} from '../../providers/ubicacion/ubicacion';
 import {EstacionamientosProvider} from '../../providers/estacionamientos/estacionamientos';
 import {ModalCercanosPage} from '../modal-cercanos/modal-cercanos';
 import {MapTypeStyle} from "@agm/core";
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker, LatLng
+} from '@ionic-native/google-maps';
 
 @Component({
   selector: 'page-home',
@@ -13,10 +22,16 @@ export class HomePage {
 
   lat:any = -33.44368;
   lg:any = -70.6661439;
-  zoom:number= 14;
+  zoom:number= 16;
   rotate:boolean=true;
 
-   styles =
+  opcionControzoom = {position:
+    {TOP_CENTER : 2,
+      LEFT_CENTER : 4,
+      RIGHT_CENTER : 8,
+      BOTTOM_CENTER : 11}}
+
+      styles =
      [
        {
          "featureType": "poi.attraction",
@@ -85,16 +100,112 @@ export class HomePage {
        }
      ];
 
-
-
+  map: GoogleMap;
   constructor(public navCtrl: NavController,
               public ubicacion:UbicacionProvider,
               public servEs:EstacionamientosProvider,
               public loadingCtrl: LoadingController,
-              public  modalCtrl : ModalController) {
+              public  modalCtrl : ModalController,
+              private googleMaps: GoogleMaps,
+              public platform:Platform) {
     this.ubicacion.iniciar_ubicacion();
+   /* this.platform.ready().then(()=>{
+      this.loadMap();
+    });*/
   }
 
+  // Prueba de ionic
+/*
+  loadMap() {
+
+    let element:HTMLElement = document.getElementById('map');
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        target: {
+          lat: 43.0741904,
+          lng: -89.3809802
+        },
+        zoom: 18,
+        tilt: 30
+      }
+    };
+
+    this.map = this.googleMaps.create('map', mapOptions);
+
+    // Wait the MAP_READY before using any methods.
+    this.map.one(GoogleMapsEvent.MAP_READY)
+      .then(() => {
+        console.log('Map is ready!');
+
+        // Now you can use all methods safely.
+        this.map.addMarker({
+          title: 'Ionic',
+          icon: 'blue',
+          animation: 'DROP',
+          position: {
+            lat: 43.0741904,
+            lng: -89.3809802
+          }
+        })
+          .then(marker => {
+            marker.on(GoogleMapsEvent.MARKER_CLICK)
+              .subscribe(() => {
+                alert('clicked');
+              });
+          });
+
+      });
+  }
+
+*/
+  // Prueba de Internet
+  /*loadMap() {
+    let element:HTMLElement = document.getElementById('map');
+
+    let map:GoogleMap =this.googleMaps.create(element);
+
+    map.one(GoogleMapsEvent.MAP_READY).then(
+      ()=>{
+        console.log('Map is ready');
+      }
+    );
+
+    let ionic: LatLng = new LatLng(this.lat, this.lg);
+
+    let position:CameraPosition<any> = {
+      target:ionic,
+      zoom: 18,
+      tilt:30
+    };
+
+    map.moveCamera(position);
+
+    let markerOptions:MarkerOptions ={
+      position: ionic,
+      title:'ionic'
+    }
+
+    map.addMarker(markerOptions)
+      .then((marker:Marker)=>{
+      marker.showInfoWindow();
+      });
+  }*/
+
+  /*loadMaps(){
+    let element:HTMLElement = document.getElementById('map');
+    let map: GoogleMap = this.googleMaps.create(element);
+    let latlng = new LatLng(this.lat, this.lg);
+    map.one(GoogleMapsEvent.MAP_READY).then(()=>
+    {
+      let position: CameraPosition = {
+        target: latlng,
+        zoom: 18,
+        tilt: 30
+      }
+      map.moveCamera(position);
+    }
+    );
+  }*/
 
   obtenerCercas(){
     let promesa = new Promise((resolve, reject)=>{

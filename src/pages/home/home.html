@@ -8,9 +8,9 @@
 
 <ion-content padding>
   <button ion-button block class="btnColor" (click)="obtenerEsCerca()">Obtener Estacionamientos cerca de ti</button>
-  <agm-map  [latitude]="ubicacion.lt" [longitude]="ubicacion.lng" [styles]="styles" [zoom]="zoom"
-            [rotateControl]="rotate" [zoomControl]="rotate" [scaleControl]="rotate" [streetViewControl]="rotate"
-            [fullscreenControl]="rotate">
+ <agm-map  [latitude]="ubicacion.lt" [longitude]="ubicacion.lng" [styles]="styles" [zoom]="zoom"
+            [rotateControlOptions]="opcionControzoom"
+           >
     <agm-marker  *ngFor="let marcador of servEs.estacionamientos let i = index"
                  [latitude]="ConvertString(marcador.lt)"
                  [longitude]="ConvertString(marcador.lng)"
@@ -48,6 +48,7 @@
     </agm-marker>
     <agm-marker [latitude]="ubicacion.lt"
                 [longitude]="ubicacion.lng"
-                iconUrl="assets/imgs/usuario.png"></agm-marker>
+                iconUrl="assets/imgs/azul.png"></agm-marker>
   </agm-map>
+  <!--<div #map id="map"></div>-->
 </ion-content>

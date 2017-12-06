@@ -9,12 +9,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ModalCercanosPage} from '../pages/modal-cercanos/modal-cercanos';
 
-import { Geolocation } from '@ionic-native/geolocation';
 import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
+import { EstacionamientosProvider } from '../providers/estacionamientos/estacionamientos';
 
 // Mapas
 import { AgmCoreModule } from '@agm/core';
-import { EstacionamientosProvider } from '../providers/estacionamientos/estacionamientos';
+import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps, Geocoder } from '@ionic-native/google-maps';
+import { Toast } from '@ionic-native/toast';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 
 @NgModule({
@@ -41,6 +44,10 @@ import { EstacionamientosProvider } from '../providers/estacionamientos/estacion
     StatusBar,
     SplashScreen,
     Geolocation,
+    GoogleMaps,
+    Geocoder,
+    Toast,
+    NativeGeocoder,
     UbicacionProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EstacionamientosProvider,
