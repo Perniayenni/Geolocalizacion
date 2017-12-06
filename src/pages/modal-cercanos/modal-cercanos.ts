@@ -19,6 +19,8 @@ export class ModalCercanosPage {
               public servEs:EstacionamientosProvider,
               public viewCtrl:ViewController,
               public alertCtrl: AlertController) {
+
+    console.log(this.servEs.estacionamientos);
   }
 
   ionViewDidLoad() {
