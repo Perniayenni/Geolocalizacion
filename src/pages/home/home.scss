@@ -1,6 +1,8 @@
 page-home {
   #map{
     height:90%;
+    display: block;
+    width: 100%;
   }
   agm-map {
     height:90%;

@@ -114,8 +114,36 @@ export class HomePage {
     });*/
   }
 
+  ionViewDidLoad(){
+    this.loadMap();
+  }
+
   // Prueba de ionic
-/*
+
+  loadMap(){
+    // create a new map by passing HTMLElement
+    let element: HTMLElement = document.getElementById('map');
+
+    this.map = this.googleMaps.create(element);
+
+    // create CameraPosition
+    let position: CameraPosition<any> = {
+      target: new LatLng(this.ubicacion.lt, this.ubicacion.lng),
+      zoom: 12,
+      tilt: 30
+    };
+
+    this.map.one(GoogleMapsEvent.MAP_READY).then(()=>{
+      console.log('Map is ready!');
+
+      // move the map's camera to position
+      this.map.moveCamera(position);
+
+    });
+  }
+
+
+  /*
   loadMap() {
 
     let element:HTMLElement = document.getElementById('map');
@@ -135,29 +163,34 @@ export class HomePage {
     // Wait the MAP_READY before using any methods.
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(() => {
-        console.log('Map is ready!');
-
         // Now you can use all methods safely.
-        this.map.addMarker({
-          title: 'Ionic',
-          icon: 'blue',
-          animation: 'DROP',
-          position: {
-            lat: 43.0741904,
-            lng: -89.3809802
-          }
-        })
-          .then(marker => {
-            marker.on(GoogleMapsEvent.MARKER_CLICK)
-              .subscribe(() => {
-                alert('clicked');
-              });
-          });
-
+        this.getPosition();
+      })
+      .catch(error =>{
+        console.log(error);
       });
   }
 
 */
+  getPosition(): void{
+    this.map.getMyLocation()
+      .then(response => {
+        this.map.moveCamera({
+          target: response.latLng
+        });
+        this.map.addMarker({
+          title: 'My Position',
+          icon: 'blue',
+          animation: 'DROP',
+          position: response.latLng
+        });
+      })
+      .catch(error =>{
+        console.log(error);
+      });
+  }
+
+
   // Prueba de Internet
   /*loadMap() {
     let element:HTMLElement = document.getElementById('map');
