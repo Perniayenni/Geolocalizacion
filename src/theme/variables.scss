@@ -41,6 +41,8 @@ $colors: (
   dark:       #222,
   amarillo:  #f1d700,
   gris: #5c5c5c,
+  facebook: #2372a3,
+  twitter: #00aced ,
 );
 
 
@@ -152,4 +154,11 @@ table.default th {
 
 .buttonPequeno{
   height: 30px;
+}
+
+
+.center
+{
+  margin-right: auto;
+  margin-left: auto;
 }

@@ -22,6 +22,7 @@
         "@angular/platform-browser-dynamic": "4.4.3",
         "@ionic-native/core": "4.3.0",
         "@ionic-native/google-maps": "^4.2.1",
+        "@ionic-native/google-plus": "^4.5.2",
         "@ionic-native/native-geocoder": "^4.4.2",
         "@ionic-native/onesignal": "^4.3.1",
         "@ionic-native/splash-screen": "4.3.0",
@@ -29,12 +30,14 @@
         "@ionic-native/toast": "^4.4.2",
         "@ionic/storage": "^2.0.1",
         "add": "^2.0.6",
+        "angularfire2": "^5.0.0-rc.4",
         "cordova-android": "^6.3.0",
         "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-device": "^1.1.7",
         "cordova-plugin-geolocation": "^3.0.0",
         "cordova-plugin-googlemaps": "^2.1.1",
+        "cordova-plugin-googleplus": "^5.1.1",
         "cordova-plugin-ionic-webview": "^1.1.16",
         "cordova-plugin-mauron85-background-geolocation": "^2.3.3",
         "cordova-plugin-nativegeocoder": "^2.0.4",
@@ -43,10 +46,12 @@
         "cordova-plugin-whitelist": "^1.3.3",
         "cordova-plugin-x-toast": "^2.6.0",
         "cordova-sqlite-storage": "^2.1.2",
+        "firebase": "^4.8.0",
         "ionic-angular": "3.7.1",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
         "onesignal-cordova-plugin": "^2.2.4",
+        "promise-polyfill": "^6.1.0",
         "rxjs": "5.4.3",
         "sw-toolbox": "3.6.0",
         "zone.js": "0.8.18"
@@ -81,7 +86,10 @@
                 "API_KEY_FOR_IOS": "AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs"
             },
             "cordova-plugin-x-toast": {},
-            "cordova-plugin-nativegeocoder": {}
+            "cordova-plugin-nativegeocoder": {},
+            "cordova-plugin-googleplus": {
+                "REVERSED_CLIENT_ID": "com.googleusercontent.apps.151231489618-fqjeq5n7krubv4dqj2drh92kl7nmdb4j"
+            }
         },
         "platforms": [
             "android",

@@ -77,12 +77,14 @@
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
     <engine name="android" spec="^6.3.0" />
-    <engine name="browser" spec="^4.1.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
     <plugin name="cordova-plugin-geolocation" spec="^3.0.0" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.1.1">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs" />
+    </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="^5.1.1">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.151231489618-fqjeq5n7krubv4dqj2drh92kl7nmdb4j" />
     </plugin>
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-mauron85-background-geolocation" spec="^2.3.3">
@@ -102,4 +104,5 @@
     <plugin name="cordova-sqlite-storage" spec="^2.1.2" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.4" />
+    <engine name="browser" spec="~4.1.0" />
 </widget>
