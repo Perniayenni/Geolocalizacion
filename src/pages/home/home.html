@@ -11,41 +11,114 @@
   <agm-map  [latitude]="ubicacion.lt" [longitude]="ubicacion.lng" [styles]="styles" [zoom]="zoom"
            [rotateControlOptions]="opcionControzoom"
           >
-   <agm-marker  *ngFor="let marcador of servEs.estacionamientos let i = index"
-                [latitude]="ConvertString(marcador.lt)"
-                [longitude]="ConvertString(marcador.lng)"
-                iconUrl="assets/imgs/estacionamiento1.png">
-     <agm-info-window class="over">
-       <div class="labelTi">{{marcador.nombreEs}}</div>
-       <div class="labelTi">{{marcador.direccion}}</div>
-       <div class="row">
-         <div class="col-md-6">
-           Capacidad Maxima: {{marcador.capacidad}}
-         </div>
-         <div class="col-md-6">
-           Altura Maxima: {{marcador.alturaMaxima}} M
-         </div>
-       </div>
-       <div class="row">
-         <div class="col-sm-12">
-           <table class="default">
-             <th>Dias</th>
-             <th>Hora</th>
-             <th>P Minuto</th>
-             <th>P Hora</th>
-             <th>Maximo al dia</th>
-             <tr *ngFor="let horarios of marcador.horarios">
-               <td>  {{horarios.dias}}</td>
-               <td> {{horarios.hora}}</td>
-               <td> <label>$</label>{{horarios.montoPorMinuto}}</td>
-               <td> <label>$</label>{{horarios.montoPorHora}}</td>
-               <td> <label>$</label>{{horarios.maximoDiario}}</td>
-             </tr>
-           </table>
-         </div>
-       </div>
-     </agm-info-window>
-   </agm-marker>
+    <div *ngFor="let marcador of servEs.estacionamientos let i = index">
+      <agm-marker  *ngIf="marcador.empresa == '1'"
+                   [latitude]="ConvertString(marcador.lt)"
+                   [longitude]="ConvertString(marcador.lng)"
+                   iconUrl="assets/imgs/estacionamiento1.png">
+        <agm-info-window class="over">
+          <div class="labelTi">{{marcador.nombreEs}}</div>
+          <div class="labelTi">{{marcador.direccion}}</div>
+          <div class="row">
+            <div class="col-md-6">
+              Capacidad Maxima: {{marcador.capacidad}}
+            </div>
+            <div class="col-md-6">
+              Altura Maxima: {{marcador.alturaMaxima}} M
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="default">
+                <th>Dias</th>
+                <th>Hora</th>
+                <th>P Minuto</th>
+                <th>P Hora</th>
+                <th>Maximo al dia</th>
+                <tr *ngFor="let horarios of marcador.horarios">
+                  <td>  {{horarios.dias}}</td>
+                  <td> {{horarios.hora}}</td>
+                  <td> <label>$</label>{{horarios.montoPorMinuto}}</td>
+                  <td> <label>$</label>{{horarios.montoPorHora}}</td>
+                  <td> <label>$</label>{{horarios.maximoDiario}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </agm-info-window>
+      </agm-marker>
+      <agm-marker  *ngIf="marcador.empresa == '2'"
+        [latitude]="ConvertString(marcador.lt)"
+        [longitude]="ConvertString(marcador.lng)"
+        iconUrl="assets/imgs/estacionamiento2.png">
+        <agm-info-window class="over">
+          <div class="labelTi">{{marcador.nombreEs}}</div>
+          <div class="labelTi">{{marcador.direccion}}</div>
+          <div class="row">
+            <div class="col-md-6">
+              Capacidad Maxima: {{marcador.capacidad}}
+            </div>
+            <div class="col-md-6">
+              Altura Maxima: {{marcador.alturaMaxima}} M
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="default">
+                <th>Dias</th>
+                <th>Hora</th>
+                <th>P Minuto</th>
+                <th>P Hora</th>
+                <th>Maximo al dia</th>
+                <tr *ngFor="let horarios of marcador.horarios">
+                  <td>  {{horarios.dias}}</td>
+                  <td> {{horarios.hora}}</td>
+                  <td> <label>$</label>{{horarios.montoPorMinuto}}</td>
+                  <td> <label>$</label>{{horarios.montoPorHora}}</td>
+                  <td> <label>$</label>{{horarios.maximoDiario}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </agm-info-window>
+      </agm-marker>
+      <agm-marker  *ngIf="marcador.empresa == '3'"
+                   [latitude]="ConvertString(marcador.lt)"
+                   [longitude]="ConvertString(marcador.lng)"
+                   iconUrl="assets/imgs/estacionamiento3.png">
+        <agm-info-window class="over">
+          <div class="labelTi">{{marcador.nombreEs}}</div>
+          <div class="labelTi">{{marcador.direccion}}</div>
+          <div class="row">
+            <div class="col-md-6">
+              Capacidad Maxima: {{marcador.capacidad}}
+            </div>
+            <div class="col-md-6">
+              Altura Maxima: {{marcador.alturaMaxima}} M
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="default">
+                <th>Dias</th>
+                <th>Hora</th>
+                <th>P Minuto</th>
+                <th>P Hora</th>
+                <th>Maximo al dia</th>
+                <tr *ngFor="let horarios of marcador.horarios">
+                  <td>  {{horarios.dias}}</td>
+                  <td> {{horarios.hora}}</td>
+                  <td> <label>$</label>{{horarios.montoPorMinuto}}</td>
+                  <td> <label>$</label>{{horarios.montoPorHora}}</td>
+                  <td> <label>$</label>{{horarios.maximoDiario}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </agm-info-window>
+      </agm-marker>
+    </div>
+
    <agm-marker [latitude]="ubicacion.lt"
                [longitude]="ubicacion.lng"
                iconUrl="assets/imgs/azul.png"></agm-marker>
