@@ -11,18 +11,21 @@
 
   <ion-list>
     <ion-item>
-      <ion-label floating>Usuario</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label floating>Correo</ion-label>
+      <ion-input [(ngModel)]="correo"
+                 type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input [(ngModel)]="contrasena"
+                 type="password"></ion-input>
     </ion-item>
 
   </ion-list>
 
-  <button ion-button block color="gris"><label style="color:#f1d700">Entrar</label></button>
+  <button ion-button
+          (click)="entrar()" block color="gris"><label style="color:#f1d700">Entrar</label></button>
   <div align="center"><a [navPush]="registro">Registrarse</a></div>
   <div align="center">
     <button class="center"(click)="ingresar('google')" align-items-center ion-button color="danger"><ion-icon name="logo-google"></ion-icon></button>
