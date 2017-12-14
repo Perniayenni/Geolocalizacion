@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as firebase from 'firebase/app';
 import {AngularFireModule} from 'angularfire2';
 import { GooglePlus } from '@ionic-native/google-plus';
@@ -7,8 +8,11 @@ import { GooglePlus } from '@ionic-native/google-plus';
 @Injectable()
 export class UsuarioProvider {
 
+  urlUsuarios:string = 'http://apiestacionamientos.ourproject.cl/public/usuarios';
+
   constructor(public afAuth: AngularFireAuth,
-              public gplus:GooglePlus) {
+              public gplus:GooglePlus,
+              public http: HttpClient) {
   }
   login() {
     this.gplus.login({
@@ -28,5 +32,17 @@ export class UsuarioProvider {
   }
   logout() {
     this.afAuth.auth.signOut();
+  }
+
+  guardarUsuario(Objeto){
+    console.log(Objeto);
+    let headers = new HttpHeaders({
+      'Content-Type':'application/json'
+    });
+
+    return this.http.post(this.urlUsuarios, Objeto, {headers})
+      .map(data=>{
+        return data;
+      });
   }
 }

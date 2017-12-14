@@ -1,9 +1,3 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="amarillo">
@@ -14,16 +8,8 @@
 
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-2></ion-col>
-      <ion-col col-10>  <label text-center >Ingrese con su Red social Favorita</label></ion-col>
-      <ion-col col-2></ion-col>
-    </ion-row>
-  </ion-grid>
 
   <ion-list>
-
     <ion-item>
       <ion-label floating>Usuario</ion-label>
       <ion-input type="text"></ion-input>
@@ -37,11 +23,9 @@
   </ion-list>
 
   <button ion-button block color="gris"><label style="color:#f1d700">Entrar</label></button>
- Registrarse
-  <button class="center"(click)="ingresar('google')" align-items-center ion-button color="danger"><ion-icon name="logo-google"></ion-icon></button>
-
-  <button ion-button (click)="ingresar('facebook')" color="facebook" ><ion-icon name="logo-facebook" large></ion-icon></button>
-
-  <button (click)="ingresar('twitter')" ion-button color="twitter" > <ion-icon name="logo-twitter"></ion-icon></button>
-
+  <div align="center"><a [navPush]="registro">Registrarse</a></div>
+  <div align="center">
+    <button class="center"(click)="ingresar('google')" align-items-center ion-button color="danger"><ion-icon name="logo-google"></ion-icon></button>
+    <button ion-button (click)="ingresar('facebook')" color="facebook" ><ion-icon name="logo-facebook" large></ion-icon></button>
+  </div>
 </ion-content>

@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ModalCercanosPage} from '../pages/modal-cercanos/modal-cercanos';
 import { LoginPage } from '../pages/login/login';
+import { RegistroPage } from '../pages/registro/registro';
 
 import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
 import { EstacionamientosProvider } from '../providers/estacionamientos/estacionamientos';
@@ -35,7 +36,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     MyApp,
     HomePage,
     ModalCercanosPage,
-    LoginPage
+    LoginPage,
+    RegistroPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     MyApp,
     HomePage,
     ModalCercanosPage,
-    LoginPage
+    LoginPage,
+    RegistroPage
   ],
   providers: [
     StatusBar,
