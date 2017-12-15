@@ -105,4 +105,5 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.4" />
     <engine name="browser" spec="~4.1.0" />
+    <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
 </widget>

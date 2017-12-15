@@ -1,9 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, Platform, LoadingController, ModalController } from 'ionic-angular';
+import { NavController, Platform, MenuController, LoadingController, ModalController } from 'ionic-angular';
 import {UbicacionProvider} from '../../providers/ubicacion/ubicacion';
+import { UsuarioProvider} from '../../providers/usuario/usuario';
 import {EstacionamientosProvider} from '../../providers/estacionamientos/estacionamientos';
 import {ModalCercanosPage} from '../modal-cercanos/modal-cercanos';
-import {MapTypeStyle} from "@agm/core";
+import { LoginPage } from '../login/login';
 import {
   GoogleMaps,
   GoogleMap,
@@ -24,6 +25,7 @@ export class HomePage {
   lg:any = -70.6661439;
   zoom:number= 16;
   rotate:boolean=true;
+  loginPage:any=LoginPage;
 
   opcionControzoom = {position:
     {TOP_CENTER : 2,
@@ -107,7 +109,9 @@ export class HomePage {
               public loadingCtrl: LoadingController,
               public  modalCtrl : ModalController,
               private googleMaps: GoogleMaps,
-              public platform:Platform) {
+              public platform:Platform,
+              public menuCtrl:MenuController,
+                public _us:UsuarioProvider) {
     this.ubicacion.iniciar_ubicacion();
    /* this.platform.ready().then(()=>{
       this.loadMap();
@@ -295,6 +299,14 @@ export class HomePage {
 
   ConvertString(value){
     return parseFloat(value)
+  }
+
+  cerrarSeccion(){
+    this._us.sessionOff().then(()=>{
+        this.navCtrl.setRoot(this.loginPage);
+      }
+    )
+
   }
 
 }

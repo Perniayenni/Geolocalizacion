@@ -30,6 +30,8 @@ import {firebaseConfig} from '../config/firebase.config';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 
+import { NativeStorage } from '@ionic-native/native-storage';
+
 
 @NgModule({
   declarations: [
@@ -71,9 +73,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EstacionamientosProvider,
-
-
-
+    NativeStorage
   ]
 })
 export class AppModule {}

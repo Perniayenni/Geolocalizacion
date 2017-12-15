@@ -1,27 +1,35 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import  {EstacionamientosProvider} from '../providers/estacionamientos/estacionamientos';
 import { HomePage } from '../pages/home/home';
 import { LoginPage} from '../pages/login/login';
+import { UsuarioProvider} from '../providers/usuario/usuario';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any;
+  login:any=LoginPage;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
-              public servEs:EstacionamientosProvider) {
+              public servEs:EstacionamientosProvider,
+              public _us:UsuarioProvider) {
     platform.ready().then(() => {
       this.servEs.obtenerEstacionamientos();
-      //console.log(this.servEs.estacionamientos);
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+      this._us.cargarStorage()
+        .then(()=>{
+          if(this._us.SessioStart){
+            this.rootPage = HomePage;
+          }else{
+            this.rootPage = LoginPage;
+          }
+          statusBar.styleDefault();
+          splashScreen.hide();
+        });
     });
 
   }
