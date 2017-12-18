@@ -27,7 +27,14 @@ export class LoginPage {
   }
 
   ingresar(proveedor:string){
-    this.provUsuario.login();
+    let loader = this.loadingCtrl.create({
+      content: "Espere porfavor"
+    });
+    loader.present();
+    this.provUsuario.login().then(()=>{
+      loader.dismissAll();
+      this.navCtrl.setRoot(this.home);
+    })
   }
 
   entrar(){
@@ -41,7 +48,7 @@ export class LoginPage {
         console.log(data);
         if (data == null){
           let alert = this.alertCtrl.create({
-            subTitle: 'Usuario no éxiste',
+            subTitle: 'Usuario no registrado',
             buttons: ['OK']
           });
 

@@ -30,7 +30,7 @@ import {firebaseConfig} from '../config/firebase.config';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 
-import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
@@ -50,7 +50,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,8 +73,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     UsuarioProvider,
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EstacionamientosProvider,
-    NativeStorage
+    EstacionamientosProvider
   ]
 })
 export class AppModule {}

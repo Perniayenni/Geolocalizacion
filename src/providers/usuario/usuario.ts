@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as firebase from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { HomePage } from '../../pages/home/home';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
 import {Platform} from "ionic-angular";
 
 
@@ -22,24 +22,56 @@ export class UsuarioProvider {
   constructor(public afAuth: AngularFireAuth,
               public gplus:GooglePlus,
               public http: HttpClient,
-              private nativeStorage: NativeStorage,
+              private storage: Storage,
               private platform: Platform) {
   }
   login() {
-    this.gplus.login({
-      'webClientId':'151231489618-fqjeq5n7krubv4dqj2drh92kl7nmdb4j.apps.googleusercontent.com',
-      'offline':true
-    }).then(res =>{
-      console.log(JSON.stringify(res));
-      firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
-        .then(suc =>{
-          console.log(suc);
-          alert('login sec')
-        }).catch(ns=>{
+    let promesa = new Promise((resolve, reject) =>{
+      this.gplus.login({
+        'webClientId':'151231489618-fqjeq5n7krubv4dqj2drh92kl7nmdb4j.apps.googleusercontent.com',
+        'offline':true
+      }).then(res =>{
+        console.log(JSON.stringify(res));
+        firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
+          .then(suc =>{
+            let datos={
+              "nombre": res.givenName,
+              "apellido": res.familyName,
+              "correo": res.email,
+              "conrasena":'123',
+              "fechaCreacion": new Date().toJSON().slice(0, 10)
+            }
+            this.ObtenerUsuario(datos.correo, datos.conrasena).subscribe(datass=>{
+              this.datosRec= datass;
+              if (this.datosRec != null){
+                for (let res of this.datosRec)
+                {
+                  this.IdUsuario = res.id_us;
+
+                }
+                this.SessioStart = true;
+                this.guardarStorage();
+              }else{
+                this.guardarUsuario(datos).subscribe(dat=>{
+                  this.SessioStart = true;
+                  this.guardarStorage();
+
+                });
+              }
+              resolve();
+            });
+
+
+          }).catch(ns=>{
           alert('not Suc')
+        })
       })
-    })
+    } )
+
+    return promesa;
+
     //this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+
   }
   logout() {
     this.afAuth.auth.signOut();
@@ -85,33 +117,37 @@ export class UsuarioProvider {
 
 
   private guardarStorage() {
-    if (this.platform.is("cordova")){
-      this.nativeStorage.setItem("variableSession", this.SessioStart);
-
-
-    }else{
-      if (this.Token){
-        localStorage.setItem('variableSession', JSON.stringify(this.SessioStart));
-        localStorage.setItem('Token', JSON.stringify(this.Token));
-        localStorage.setItem('idUsuario', JSON.stringify(this.IdUsuario));
+    let  promesa = new Promise((resolve, reject) => {
+      if (this.platform.is('cordova')){
+        this.storage.set('variableSession', JSON.stringify(this.SessioStart));
       }else{
-        localStorage.removeItem('Token');
-        localStorage.removeItem('idUsuario');
-        localStorage.removeItem('variableSession');
+        if (this.Token){
+          localStorage.setItem('variableSession', JSON.stringify(this.SessioStart));
+          localStorage.setItem('Token', JSON.stringify(this.Token));
+          localStorage.setItem('idUsuario', JSON.stringify(this.IdUsuario));
+        }else{
+          localStorage.removeItem('Token');
+          localStorage.removeItem('idUsuario');
+          localStorage.removeItem('variableSession');
+        }
       }
-    }
-
+    });
+    return promesa;
   }
 
-    public cargarStorage() {
+  public cargarStorage() {
 
-    let promesa = new Promise((resolve, reject) => {
-      if (this.platform.is("cordova")){
-        this.nativeStorage.getItem('variableSession')
-          .then(session=>{
-            this.SessioStart= session;
-            resolve();
-          })
+    return new Promise((resolve, reject) => {
+      if (this.platform.is('cordova')){
+        return this.storage.ready()
+          .then(()=>{
+            this.storage.get('variableSession')
+              .then((session)=>{
+                this.SessioStart= session;
+                console.log("Cargando el storage SessionStart "+JSON.parse(session));
+                resolve();
+              })
+          });
       }else{
         if (localStorage.getItem('Token')){
           this.SessioStart = JSON.parse(localStorage.getItem('variableSession'));
@@ -122,12 +158,9 @@ export class UsuarioProvider {
           this.IdUsuario = null;
           this.Token = null;
         }
-
+        resolve();
       }
-      resolve();
     })
-      return promesa;
-
   }
 
   sessionOff() {
@@ -143,7 +176,7 @@ export class UsuarioProvider {
 
   limpiarStorage(){
     if (this.platform.is("cordova")) {
-      this.nativeStorage.clear();
+      this.storage.clear();
     } else {
       localStorage.clear();
     }

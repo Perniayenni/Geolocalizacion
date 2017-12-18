@@ -11,21 +11,22 @@ import { UsuarioProvider} from '../providers/usuario/usuario';
 })
 export class MyApp {
   rootPage:any;
-  login:any=LoginPage;
-
   constructor(platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
               public servEs:EstacionamientosProvider,
               public _us:UsuarioProvider) {
     platform.ready().then(() => {
-      this.servEs.obtenerEstacionamientos();
       this._us.cargarStorage()
         .then(()=>{
+        console.log('se cargo el storage y es '+ this._us.SessioStart)
           if(this._us.SessioStart){
+            this.servEs.obtenerEstacionamientos();
             this.rootPage = HomePage;
-          }else{
+          }else
+            if (!this._us.SessioStart){
             this.rootPage = LoginPage;
+              this.servEs.obtenerEstacionamientos();
           }
           statusBar.styleDefault();
           splashScreen.hide();

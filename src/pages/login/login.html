@@ -1,14 +1,6 @@
-<ion-header>
-
-  <ion-navbar color="amarillo">
-    <ion-title>login</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
 
 <ion-content padding>
-
+  <img src="assets/imgs/logoo.png" style="">
   <ion-list>
     <ion-item>
       <ion-label floating>Correo</ion-label>
@@ -26,9 +18,11 @@
 
   <button ion-button
           (click)="entrar()" block color="gris"><label style="color:#f1d700">Entrar</label></button>
-  <div align="center"><a [navPush]="registro">Registrarse</a></div>
+  <br>
+  <div align="center"><a class="regis" [navPush]="registro">Registrarse</a></div>
+  <br>
   <div align="center">
-    <button class="center"(click)="ingresar('google')" align-items-center ion-button color="danger"><ion-icon name="logo-google"></ion-icon></button>
-    <button ion-button (click)="ingresar('facebook')" color="facebook" ><ion-icon name="logo-facebook" large></ion-icon></button>
+    <ion-icon color="danger" class="zizeIco" (click)="ingresar('google')" name="logo-google"></ion-icon>
+   <ion-icon color="facebook" class="zizeIco" name="logo-facebook" large></ion-icon>
   </div>
 </ion-content>
