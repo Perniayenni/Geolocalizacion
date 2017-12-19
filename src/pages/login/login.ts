@@ -27,14 +27,44 @@ export class LoginPage {
   }
 
   ingresar(proveedor:string){
-    let loader = this.loadingCtrl.create({
-      content: "Espere porfavor"
-    });
-    loader.present();
-    this.provUsuario.login().then(()=>{
-      loader.dismissAll();
-      this.navCtrl.setRoot(this.home);
-    })
+    if (proveedor == 'g'){
+      let loader = this.loadingCtrl.create({
+        content: "Espere porfavor"
+      });
+      loader.present();
+      this.provUsuario.login().then(()=>{
+        loader.dismissAll();
+        this.navCtrl.setRoot(this.home);
+      }).catch(()=>{
+        loader.dismissAll();
+        let alert = this.alertCtrl.create({
+          subTitle: 'Se produjo un error al ingresar',
+          buttons: ['OK']
+        });
+
+        alert.present();
+      });
+    }else
+      if (proveedor == 'f'){
+        let loader = this.loadingCtrl.create({
+          content: "Espere porfavor"
+        });
+        loader.present();
+
+        this.provUsuario.fblogin().then(()=>{
+          loader.dismissAll();
+          this.navCtrl.setRoot(this.home);
+        }).catch(()=>{
+          loader.dismissAll();
+          let alert = this.alertCtrl.create({
+            subTitle: 'Se produjo un error al ingresar',
+            buttons: ['OK']
+          });
+
+          alert.present();
+        });
+      }
+
   }
 
   entrar(){

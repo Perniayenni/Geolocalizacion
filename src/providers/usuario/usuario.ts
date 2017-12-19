@@ -6,6 +6,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { HomePage } from '../../pages/home/home';
 import { Storage } from '@ionic/storage';
 import {Platform} from "ionic-angular";
+import { Facebook } from '@ionic-native/facebook';
 
 
 @Injectable()
@@ -23,7 +24,8 @@ export class UsuarioProvider {
               public gplus:GooglePlus,
               public http: HttpClient,
               private storage: Storage,
-              private platform: Platform) {
+              private platform: Platform,
+              private facebook:Facebook) {
   }
   login() {
     let promesa = new Promise((resolve, reject) =>{
@@ -63,8 +65,10 @@ export class UsuarioProvider {
 
 
           }).catch(ns=>{
-          alert('not Suc')
+          reject();
         })
+      }).catch(ns=>{
+        reject();
       })
     } )
 
@@ -73,9 +77,53 @@ export class UsuarioProvider {
     //this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
   }
-  logout() {
+ /* logout() {
     this.afAuth.auth.signOut();
-  }
+  }*/
+
+ fblogin(){
+   let promesa = new Promise((resolve, reject) =>{
+     this.facebook.login(['email'])
+       .then(res=>{
+         const fc= firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
+         firebase.auth().signInWithCredential(fc).then(fs=>{
+           console.log(JSON.stringify(fs));
+           let datos={
+             "nombre": fs.displayName,
+             "apellido": 'sN',
+             "correo": fs.email,
+             "conrasena":'123',
+             "fechaCreacion": new Date().toJSON().slice(0, 10)
+           }
+           this.ObtenerUsuario(datos.correo, datos.conrasena).subscribe(datass=>{
+             this.datosRec= datass;
+             if (this.datosRec != null){
+               for (let res of this.datosRec)
+               {
+                 this.IdUsuario = res.id_us;
+
+               }
+               this.SessioStart = true;
+               this.guardarStorage();
+             }else{
+               this.guardarUsuario(datos).subscribe(dat=>{
+                 this.SessioStart = true;
+                 this.guardarStorage();
+
+               });
+             }
+             resolve();
+           });
+         }).catch(err=>{
+           reject();
+         })
+       }).catch(err=>{
+       reject();
+     })
+   })
+   return promesa;
+ }
+
 
   guardarUsuario(Objeto){
     console.log(Objeto);
@@ -114,6 +162,7 @@ export class UsuarioProvider {
         return this.datosRec;
       });
   }
+
 
 
   private guardarStorage() {
@@ -169,6 +218,7 @@ export class UsuarioProvider {
       this.Token = null;
       this.IdUsuario = null;
       this.limpiarStorage();
+      this.gplus.logout();
       resolve();
     })
     return promesa

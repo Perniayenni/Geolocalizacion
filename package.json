@@ -21,6 +21,7 @@
         "@angular/platform-browser": "4.4.3",
         "@angular/platform-browser-dynamic": "4.4.3",
         "@ionic-native/core": "4.3.0",
+        "@ionic-native/facebook": "^4.5.2",
         "@ionic-native/google-maps": "^4.2.1",
         "@ionic-native/google-plus": "^4.5.2",
         "@ionic-native/native-geocoder": "^4.4.2",
@@ -36,6 +37,7 @@
         "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-device": "^1.1.7",
+        "cordova-plugin-facebook4": "^1.9.1",
         "cordova-plugin-geolocation": "^3.0.0",
         "cordova-plugin-googlemaps": "^2.1.1",
         "cordova-plugin-googleplus": "^5.1.1",
@@ -92,7 +94,11 @@
             "cordova-plugin-googleplus": {
                 "REVERSED_CLIENT_ID": "com.googleusercontent.apps.151231489618-fqjeq5n7krubv4dqj2drh92kl7nmdb4j"
             },
-            "cordova-plugin-nativestorage": {}
+            "cordova-plugin-nativestorage": {},
+            "cordova-plugin-facebook4": {
+                "APP_ID": "1175864875878981",
+                "APP_NAME": "cytyPark"
+            }
         },
         "platforms": [
             "android",

@@ -29,6 +29,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import {firebaseConfig} from '../config/firebase.config';
 
 import { GooglePlus } from '@ionic-native/google-plus';
+import { Facebook } from '@ionic-native/facebook';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -72,6 +73,7 @@ import { IonicStorageModule } from '@ionic/storage';
     UbicacionProvider,
     UsuarioProvider,
     GooglePlus,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EstacionamientosProvider
   ]

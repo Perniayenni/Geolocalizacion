@@ -79,6 +79,10 @@
     <engine name="android" spec="^6.3.0" />
     <engine name="browser" spec="^4.1.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="1175864875878981" />
+        <variable name="APP_NAME" value="cytyPark" />
+    </plugin>
     <plugin name="cordova-plugin-geolocation" spec="^3.0.0" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.1.1">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs" />
