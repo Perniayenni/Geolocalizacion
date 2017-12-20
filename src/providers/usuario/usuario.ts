@@ -7,7 +7,7 @@ import { HomePage } from '../../pages/home/home';
 import { Storage } from '@ionic/storage';
 import {Platform} from "ionic-angular";
 import { Facebook } from '@ionic-native/facebook';
-
+import {Insomnia} from "@ionic-native/insomnia";
 
 @Injectable()
 export class UsuarioProvider {
@@ -25,7 +25,19 @@ export class UsuarioProvider {
               public http: HttpClient,
               private storage: Storage,
               private platform: Platform,
-              private facebook:Facebook) {
+              private facebook:Facebook,
+              private insomnia: Insomnia) {
+  }
+  noDormir(){
+    this.insomnia.keepAwake()
+      .then(
+        () => console.log('success'),
+        () => console.log('error')
+      );
+  }
+
+  dormirDenuevo(){
+
   }
   login() {
     let promesa = new Promise((resolve, reject) =>{
@@ -77,13 +89,14 @@ export class UsuarioProvider {
     //this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
   }
- /* logout() {
+
+  /* logout() {
     this.afAuth.auth.signOut();
   }*/
 
  fblogin(){
    let promesa = new Promise((resolve, reject) =>{
-     this.facebook.login(['email'])
+     this.facebook.login(['email', 'public_profile'])
        .then(res=>{
          const fc= firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
          firebase.auth().signInWithCredential(fc).then(fs=>{
@@ -163,8 +176,6 @@ export class UsuarioProvider {
       });
   }
 
-
-
   private guardarStorage() {
     let  promesa = new Promise((resolve, reject) => {
       if (this.platform.is('cordova')){
@@ -219,6 +230,8 @@ export class UsuarioProvider {
       this.IdUsuario = null;
       this.limpiarStorage();
       this.gplus.logout();
+      this.facebook.logout();
+      this.dormirDenuevo();
       resolve();
     })
     return promesa

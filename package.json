@@ -22,8 +22,9 @@
         "@angular/platform-browser-dynamic": "4.4.3",
         "@ionic-native/core": "4.3.0",
         "@ionic-native/facebook": "^4.5.2",
-        "@ionic-native/google-maps": "^4.2.1",
+        "@ionic-native/google-maps": "^4.5.2",
         "@ionic-native/google-plus": "^4.5.2",
+        "@ionic-native/insomnia": "^4.5.2",
         "@ionic-native/native-geocoder": "^4.4.2",
         "@ionic-native/native-storage": "^4.5.2",
         "@ionic-native/onesignal": "^4.3.1",
@@ -41,6 +42,7 @@
         "cordova-plugin-geolocation": "^3.0.0",
         "cordova-plugin-googlemaps": "^2.1.1",
         "cordova-plugin-googleplus": "^5.1.1",
+        "cordova-plugin-insomnia": "^4.3.0",
         "cordova-plugin-ionic-webview": "^1.1.16",
         "cordova-plugin-mauron85-background-geolocation": "^2.3.3",
         "cordova-plugin-nativegeocoder": "^2.0.4",
@@ -87,7 +89,8 @@
             },
             "cordova-plugin-googlemaps": {
                 "API_KEY_FOR_ANDROID": "AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs",
-                "API_KEY_FOR_IOS": "AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs"
+                "API_KEY_FOR_IOS": "YOUR_IOS_API_KEY_IS_HERE",
+                "API_KEY_FOR_IOS∫∫": "AIzaSyDgrCp-pG6XoB_V0ENiDmYtNgTUpGf4wVs"
             },
             "cordova-plugin-x-toast": {},
             "cordova-plugin-nativegeocoder": {},
@@ -98,7 +101,8 @@
             "cordova-plugin-facebook4": {
                 "APP_ID": "1175864875878981",
                 "APP_NAME": "cytyPark"
-            }
+            },
+            "cordova-plugin-insomnia": {}
         },
         "platforms": [
             "android",

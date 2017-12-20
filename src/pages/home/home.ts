@@ -14,6 +14,7 @@ import {
   MarkerOptions,
   Marker, LatLng
 } from '@ionic-native/google-maps';
+import { Insomnia } from '@ionic-native/insomnia';
 
 @Component({
   selector: 'page-home',
@@ -113,13 +114,14 @@ export class HomePage {
               public menuCtrl:MenuController,
                 public _us:UsuarioProvider) {
     this.ubicacion.iniciar_ubicacion();
+    this._us.noDormir();
    /* this.platform.ready().then(()=>{
       this.loadMap();
     });*/
   }
 
   ionViewDidLoad(){
-    this.loadMap();
+    //this.loadMap();
   }
 
   // Prueba de ionic

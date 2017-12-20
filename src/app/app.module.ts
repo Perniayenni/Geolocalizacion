@@ -32,6 +32,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { Facebook } from '@ionic-native/facebook';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { Insomnia } from '@ionic-native/insomnia';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { IonicStorageModule } from '@ionic/storage';
     UsuarioProvider,
     GooglePlus,
     Facebook,
+    Insomnia,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EstacionamientosProvider
   ]

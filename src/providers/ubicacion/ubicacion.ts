@@ -11,6 +11,7 @@ import {
   GeocoderResult,
   Geocoder,
 } from '@ionic-native/google-maps';
+import {NativeGeocoder, NativeGeocoderReverseResult} from "@ionic-native/native-geocoder";
 
 //import { Toast } from '@ionic-native/toast';
 
@@ -26,11 +27,11 @@ import {
 export class UbicacionProvider {
 
   constructor(private geolocation: Geolocation,
-              private googleMaps: GoogleMaps
+              private googleMaps: GoogleMaps,
             //  private toast: Toast,
-            //  private nativeGeocoder: NativeGeocoder
+             private nativeGeocoder: NativeGeocoder
               ) {
-    console.log('Hello UbicacionProvider Provider');
+    //console.log('Hello UbicacionProvider Provider');
   }
   lt:any;
   lng:any;
@@ -44,18 +45,18 @@ export class UbicacionProvider {
    this.lng = this.data.coords.longitude;
       console.log(this.lt, this.lng);
       console.log(this.data);
-      //this.doGeocode(this.lt, this.lng);
+     // this.doGeocode(this.lt, this.lng);
       // data can be a set of coordinates, or an error (if an error occurred).
       // data.coords.latitude
       // data.coords.longitude
     });
   }
-/*
-  getDirecion(lat, lng){
-    this.nativeGeocoder.reverseGeocode(lat, lng)
-      .then((result: NativeGeocoderReverseResult) => console.log(JSON.stringify(result)))
-      .catch((error: any) => console.log(error));
-  }*/
+  getDirecion(lat, lng) {
+    this.nativeGeocoder.reverseGeocode(-33.4448057, 70.6461855)
+      .then((result: NativeGeocoderReverseResult) =>{
+        console.log(JSON.stringify(result));
+      }).catch((error: any) => console.log(error));
+  }
   doGeocode(lat, lng) {
     let request: GeocoderRequest = {
       position: new LatLng(52.5072095, 13.1452818)
