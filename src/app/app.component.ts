@@ -6,6 +6,7 @@ import  {EstacionamientosProvider} from '../providers/estacionamientos/estaciona
 import { HomePage } from '../pages/home/home';
 import { LoginPage} from '../pages/login/login';
 import { UsuarioProvider} from '../providers/usuario/usuario';
+import {UbicacionProvider} from "../providers/ubicacion/ubicacion";
 @Component({
   templateUrl: 'app.html'
 })
@@ -15,6 +16,7 @@ export class MyApp {
               statusBar: StatusBar,
               splashScreen: SplashScreen,
               public servEs:EstacionamientosProvider,
+              public ubicacion:UbicacionProvider,
               public _us:UsuarioProvider) {
     platform.ready().then(() => {
       this._us.cargarStorage()
@@ -22,11 +24,13 @@ export class MyApp {
         console.log('se cargo el storage y es '+ this._us.SessioStart)
           if(this._us.SessioStart){
             this.servEs.obtenerEstacionamientos();
+            this.ubicacion.iniciar_ubicacion();
             this.rootPage = HomePage;
           }else
             if (!this._us.SessioStart){
             this.rootPage = LoginPage;
               this.servEs.obtenerEstacionamientos();
+              this.ubicacion.iniciar_ubicacion();
           }
           statusBar.styleDefault();
           splashScreen.hide();

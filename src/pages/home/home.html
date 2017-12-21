@@ -11,8 +11,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <button ion-button block class="btnColor" (click)="obtenerEsCerca()">Obtener Estacionamientos cerca de ti</button>
+<ion-content >
+  <ion-fab top left bottom>
+    <button ion-fab max color="gris" (click)="obtenerEsCerca()"> <ion-icon color="amarillo" name="search"></ion-icon></button>
+  </ion-fab>
+  <!--<button padding ion-button block class="btnColor" (click)="obtenerEsCerca()">Obtener Estacionamientos cerca de ti</button>
+ -->
   <agm-map  [latitude]="ubicacion.lt" [longitude]="ubicacion.lng" [styles]="styles" [zoom]="zoom"
            [rotateControlOptions]="opcionControzoom"
           >

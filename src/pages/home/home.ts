@@ -113,7 +113,6 @@ export class HomePage {
               public platform:Platform,
               public menuCtrl:MenuController,
                 public _us:UsuarioProvider) {
-    this.ubicacion.iniciar_ubicacion();
     this._us.noDormir();
    /* this.platform.ready().then(()=>{
       this.loadMap();
